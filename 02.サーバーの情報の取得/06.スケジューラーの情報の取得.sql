@@ -36,6 +36,7 @@ WHERE
 OPTION (RECOMPILE)
 GO
 
+-- NUMA ノード単位での情報の取得
 SELECT
 	*
 FROM

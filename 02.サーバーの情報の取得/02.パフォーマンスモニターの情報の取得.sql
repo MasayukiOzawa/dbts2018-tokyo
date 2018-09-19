@@ -6,8 +6,6 @@ Support Platform : SQL Server 2008 以降
 
 https://blogs.msdn.microsoft.com/psssql/2013/09/23/interpreting-the-counter-values-from-sys-dm_os_performance_counters/
 https://github.com/Microsoft/mssql-monitoring
-http://localhost:3000/
-
 *************************************************************** */
 SELECT
 	*
@@ -32,3 +30,8 @@ FROM
 WHERE
 	object_name  LIKE '%Plan Cache%'
 GO
+
+/*****************************
+Grafana 経由で情報を可視化
+http://localhost:3000/
+*****************************/

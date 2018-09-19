@@ -38,9 +38,11 @@ SELECT * FROM DLTest WITH (UPDLOCK) WHERE C1 = 2
 UPDATE DLTest SET C2 = NEWID() WHERE C1 = 1
 -- ROLLBACK TRAN
 
+/****************************************/
+-- デッドロックの確認
+/****************************************/
 -- event_file から取得 (キャッシュがファイルにフラッシュされるまで、多少のタイムラグがある)
-DECLARE @file nvarchar(max) = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Log\system_health*.xel'
-DECLARE @metafile nvarchar(max) = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Log\system_health*.xem'
+DECLARE @file nvarchar(max) = N'/var/opt/mssql/log/system_health*.xel'
 
 SELECT
 	DATEADD(hour,9 , xmldata.value('(/event/@timestamp)[1]', 'datetime')) AS timestamp,
@@ -53,7 +55,7 @@ FROM(
 		object_name,
 		CAST(event_data AS XML) AS xmldata
 	FROM
-		sys.fn_xe_file_target_read_file(@file, @metafile, NULL, NULL)
+		sys.fn_xe_file_target_read_file(@file, NULL, NULL, NULL)
 	WHERE
 		object_name IN('xml_deadlock_report')
 ) AS x

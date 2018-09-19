@@ -5,7 +5,6 @@ Support Platform : SQL Server 2008 以降
 ライブクエリによる実行プランの表示 
 Support Platform : SQL Server 2014 以降
 *************************************************************** */
-
 USE [tpch]
 DBCC FREEPROCCACHE
 GO

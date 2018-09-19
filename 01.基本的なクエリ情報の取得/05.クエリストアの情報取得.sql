@@ -4,7 +4,7 @@ Support Platform : SQL Server 2016 以降の全エディション で利用可�
 *************************************************************** */
 
 /*
-クエリストアの有効化
+-- クエリストアの有効化
 USE [master]
 GO
 -- クエリストアのクリア
@@ -14,6 +14,7 @@ ALTER DATABASE [tpch] SET QUERY_STORE = ON
 GO
 ALTER DATABASE [tpch] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, INTERVAL_LENGTH_MINUTES = 1)
 GO
+-- テスト用クエリを実行しておく
 */
 
 USE [tpch]
