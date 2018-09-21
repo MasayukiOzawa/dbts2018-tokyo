@@ -4,7 +4,6 @@ Support Platform : SQL Server 2016 SP1 以降の軽量プロファイリング�
 *************************************************************** */
 -- DBCC TRACEON(7412, -1)
 DECLARE @starttime datetime = (SELECT sqlserver_start_time FROM sys.dm_os_sys_info)
-
 SELECT
     qp.session_id, 
 	DB_NAME(qp.database_id) AS db_name,
@@ -47,3 +46,9 @@ WHERE
 ORDER BY
     session_id, request_id, node_id, thread_id
 OPTION (RECOMPILE)
+
+SELECT
+	session_id,
+	query_plan
+FROM
+	sys.dm_exec_query_statistics_xml(63)

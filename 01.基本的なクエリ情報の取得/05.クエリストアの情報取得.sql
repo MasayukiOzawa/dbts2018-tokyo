@@ -24,6 +24,7 @@ GO
 DECLARE @query_hash binary(8) = 0xB4A24E1213D92EE3
 
 SELECT
+	p.query_id,
 	DATEADD(hour, 9, rsi.start_time) AS start_time,
 	DATEADD(hour, 9, rsi.end_time) AS end_time,
 	DATEADD(hour, 9, rs.first_execution_time) AS first_execution_time,
